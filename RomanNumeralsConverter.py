@@ -32,6 +32,10 @@ def is_possible_roman_numeral(string):
 
     RETURNS: bool
     """
+    # Check if string is a str
+    if not isinstance(string, str):
+        raise TypeError("Parameter 'string' must be of type str")
+
     # Matches strings that consist of IVXLCDM characters starting at index 0 (ignoring case)
     # If this happens, returns True if the whole string was matched, False otherwise
     match = re.match("[IVXLCDM]+", string, flags=re.IGNORECASE)
@@ -50,6 +54,10 @@ def is_non_zero_arabic_numeral(string):
 
     RETURNS: bool
     """
+    # Check if string is a str
+    if not isinstance(string, str):
+        raise TypeError("Parameter 'string' must be of type str")
+
     # Is comprised only of digits and is not only zero(es)
     return string.isdigit() and int(string) != 0
 
@@ -63,6 +71,10 @@ def at_most_once_vld(string):
 
     RETURNS: bool
     """
+    # Check if string is a str
+    if not isinstance(string, str):
+        raise TypeError("Parameter 'string' must be of type str")
+
     vld = {"V": 0, "L": 0, "D": 0}
 
     for letter in string.upper():
@@ -85,6 +97,10 @@ def at_most_3_in_row_ixcm(string):
 
     RETURNS: bool
     """
+    # Check if string is a str
+    if not isinstance(string, str):
+        raise TypeError("Parameter 'string' must be of type str")
+
     ixcm = ("I", "X", "C", "M")
     
     current_letter = ""
@@ -120,6 +136,10 @@ def roman_to_arabic(roman_numeral):
     RETURNS: int
         Actual conversion to Arabic Numeral if possible, -1 otherwise.
     """
+    # Check if roman_numeral is a str
+    if not isinstance(roman_numeral, str):
+        raise TypeError("Parameter 'roman_numeral' must be of type str")
+
     # VERIFY VALIDITY
     
     # is alpha string
@@ -154,6 +174,10 @@ def arabic_to_roman(arabic_numeral):  # TODO
     RETURNS: int
         Actual conversion to Roman Numeral if possible, -1 otherwise.
     """
+    # Check if string is a str
+    if not isinstance(arabic_numeral, str):
+        raise TypeError("Parameter 'arabic_numeral' must be of type str")
+
     # verify validity of arabic_numeral
     #   only numeric characters
     #   no 0
