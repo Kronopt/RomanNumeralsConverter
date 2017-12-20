@@ -7,7 +7,8 @@ Tests for RomanNumeralsConverter.py
 
 
 import unittest
-from RomanNumeralsConverter import is_possible_roman_numeral
+from RomanNumeralsConverter import (is_possible_roman_numeral,
+                                    is_non_zero_arabic_numeral)
 
 
 class TestIsPossibleRomanNumeral(unittest.TestCase):
@@ -21,7 +22,7 @@ class TestIsPossibleRomanNumeral(unittest.TestCase):
         self.assertFalse(is_possible_roman_numeral("0123456789"))
 
     def test_symbols(self):
-        self.assertFalse(is_possible_roman_numeral("!#$%%&()=?/\\"))
+        self.assertFalse(is_possible_roman_numeral("!#$%&()=?/\\"))
 
     def test_lower_case(self):
         self.assertTrue(is_possible_roman_numeral("IVXLCDM"))
@@ -47,12 +48,46 @@ class TestIsPossibleRomanNumeral(unittest.TestCase):
     def test_10_chars(self):
         self.assertTrue(is_possible_roman_numeral("IIIIIIIIII"))
 
+    def test_15_chars(self):
+        self.assertFalse(is_possible_roman_numeral("IIIIIIIIIIIIIII"))
+
     def test_new_line(self):
         self.assertFalse(is_possible_roman_numeral("M\nC"))
 
 
-class TestIsNonZeroArabicNumeral(unittest.TestCase):  # TODO
+class TestIsNonZeroArabicNumeral(unittest.TestCase):
     """
     is_non_zero_arabic_numeral(string)
     """
-    pass
+    def test_empty_string(self):
+        self.assertFalse(is_non_zero_arabic_numeral(""))
+
+    def test_not_digit(self):
+        self.assertFalse(is_non_zero_arabic_numeral("a#/."))
+
+    def test_zero(self):
+        self.assertFalse(is_non_zero_arabic_numeral("0"))
+
+    def test_zeroes(self):
+        self.assertFalse(is_non_zero_arabic_numeral("000000000000000"))
+
+    def test_negative(self):
+        self.assertFalse(is_non_zero_arabic_numeral("-1"))
+
+    def test_positive(self):
+        self.assertTrue(is_non_zero_arabic_numeral("1"))
+
+    def test_over_max(self):
+        self.assertFalse(is_non_zero_arabic_numeral("3900"))
+
+    def test_middle(self):
+        self.assertTrue(is_non_zero_arabic_numeral("2000"))
+
+
+class TestAtMostOnceVLD(unittest.TestCase):  # TODO
+    """
+    at_most_once_vld(string)
+    """
+
+
+# TODO assertRaises for wrong type

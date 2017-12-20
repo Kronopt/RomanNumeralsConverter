@@ -32,34 +32,27 @@ def is_possible_roman_numeral(string):
 
     RETURNS: bool
     """
-    # Check if string is a str
-    if not isinstance(string, str):
-        raise TypeError("Parameter 'string' must be of type str")
-
-    # Matches strings that consist of IVXLCDM characters starting at index 0 (ignoring case)
-    # If this happens, returns True if the whole string was matched, False otherwise
-    match = re.match("[IVXLCDM]+", string, flags=re.IGNORECASE)
-    if match:
-        return len(match.group()) == len(string)
+    if 0 < len(string) <= 14:  # Longest Roman numeral (2888) has 14 characters
+        # Matches strings that consist of IVXLCDM characters starting at index 0 (ignoring case)
+        # If this happens, returns True if the whole string was matched, False otherwise
+        match = re.match("[IVXLCDM]+", string, flags=re.IGNORECASE)
+        if match:
+            return len(match.group()) == len(string)
     
     return False
 
 
 def is_non_zero_arabic_numeral(string):
     """
-    True if string is a non zero natural Arabic Numeral, False otherwise.
+    True if string is a non zero natural Arabic Numeral less than or equal to 3899 (max Roman Numeral), False otherwise.
 
     PARAMETERS:
         string : str
 
     RETURNS: bool
     """
-    # Check if string is a str
-    if not isinstance(string, str):
-        raise TypeError("Parameter 'string' must be of type str")
-
     # Is comprised only of digits and is not only zero(es)
-    return string.isdigit() and int(string) != 0
+    return string.isdigit() and int(string) != 0 and int(string) <= 3899
 
 
 def at_most_once_vld(string):
@@ -71,10 +64,6 @@ def at_most_once_vld(string):
 
     RETURNS: bool
     """
-    # Check if string is a str
-    if not isinstance(string, str):
-        raise TypeError("Parameter 'string' must be of type str")
-
     vld = {"V": 0, "L": 0, "D": 0}
 
     for letter in string.upper():
@@ -97,10 +86,6 @@ def at_most_3_in_row_ixcm(string):
 
     RETURNS: bool
     """
-    # Check if string is a str
-    if not isinstance(string, str):
-        raise TypeError("Parameter 'string' must be of type str")
-
     ixcm = ("I", "X", "C", "M")
     
     current_letter = ""
@@ -124,6 +109,11 @@ def at_most_3_in_row_ixcm(string):
             letter_count = 0
     
     return True
+
+
+################
+# Main Functions
+################
 
 
 def roman_to_arabic(roman_numeral):
