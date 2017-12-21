@@ -140,7 +140,7 @@ def roman_to_arabic(roman_numeral):
             at_most_once_vld(roman_numeral) and
             at_most_3_in_row_ixcm(roman_numeral)):
 
-        pass  # TODO
+        pass  # TODO (use string.upper)
         # Rules:
         # - Numerals arranged in descending order (except for subtractive combinations)
         # Subtractive combinations Rules:
@@ -159,14 +159,14 @@ def arabic_to_roman(arabic_numeral):  # TODO
     Converts an Arabic numeral to a Roman numeral.
 
     PARAMETERS:
-        arabic_numeral : str
+        arabic_numeral : int
 
-    RETURNS: int
-        Actual conversion to Roman Numeral if possible, -1 otherwise.
+    RETURNS: str
+        Actual conversion to Roman Numeral if possible, empty string otherwise.
     """
-    # Check if string is a str
-    if not isinstance(arabic_numeral, str):
-        raise TypeError("Parameter 'arabic_numeral' must be of type str")
+    # Check if string is an int
+    if not isinstance(arabic_numeral, int):
+        raise TypeError("Parameter 'arabic_numeral' must be of type int")
 
     # verify validity of arabic_numeral
     #   only numeric characters
@@ -174,10 +174,5 @@ def arabic_to_roman(arabic_numeral):  # TODO
     #   positive only
     #   max value = 3999 (classic representation)
     # convert into Roman
-    # return value
 
-    # Extra
-    #   As some allowed representations are not usually used (IIII instead of IV),
-    #   return the most correct representation possible
-
-    return -1
+    return ""
