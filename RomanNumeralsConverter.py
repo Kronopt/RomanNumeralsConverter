@@ -24,7 +24,7 @@ __status__ = 'Production'
 def is_possible_roman_numeral(string):
     """
     True if string is a possible Roman Numeral, False otherwise.
-    Checks if only a combination of the following characters exist (ignoring case): IVXLCDM
+    Checks if only a combination of the following characters exist: IVXLCDM (upper case)
     Does not verify if it is a valid Roman Numeral.
 
     PARAMETERS:
@@ -33,9 +33,9 @@ def is_possible_roman_numeral(string):
     RETURNS: bool
     """
     if 0 < len(string) <= 14:  # Longest Roman numeral (2888) has 14 characters
-        # Matches strings that consist of IVXLCDM characters starting at index 0 (ignoring case)
+        # Matches strings that consist of IVXLCDM characters starting at index 0
         # If this happens, returns True if the whole string was matched, False otherwise
-        match = re.match("[IVXLCDM]+", string, flags=re.IGNORECASE)
+        match = re.match("[IVXLCDM]+", string)
         if match:
             return len(match.group()) == len(string)
     
@@ -66,7 +66,7 @@ def at_most_once_vld(string):
     """
     vld = {"V": 0, "L": 0, "D": 0}
 
-    for letter in string.upper():
+    for letter in string:
         if letter in vld:
             # Count occurrences of letter
             # If any of those counts reaches 2, returns False. True otherwise
@@ -91,7 +91,7 @@ def at_most_3_in_row_ixcm(string):
     current_letter = ""
     letter_count = 0
 
-    for letter in string.upper():
+    for letter in string:
         if letter in ixcm:
             # Count sequential occurrences
             # If any of those counts reaches 4, returns False. True otherwise
@@ -103,11 +103,61 @@ def at_most_3_in_row_ixcm(string):
                 if letter_count > 3:
                     return False
         
-        # if letter not one of IXCM, reset current_letter and count
+        # If letter not one of IXCM, reset current_letter and count
         else:
             current_letter = ""
             letter_count = 0
     
+    return True
+
+
+def find_subtractive_combinations(string):
+    """
+    Finds subtractive combination pairs in string.
+
+    PARAMETERS:
+        string : str
+
+    RETURNS: tuple
+        Tuple containing all subtractive combination pairs found.
+    """
+    ivxlcdm = ["I", "V", "X", "L", "C", "D", "M"]
+
+    subtractive_pairs = []
+    previous_char = "M"  # Max char (first case always goes through)
+
+    for char in string:
+        if char not in ivxlcdm[:ivxlcdm.index(previous_char) + 1]:  # char <= previous_char
+            subtractive_pairs.append(previous_char + char)
+
+        previous_char = char
+
+    return tuple(subtractive_pairs)
+
+
+def subtractive_combination_validity(pairs):
+    """
+    Checks the validity of subtractive pairs. True if all pairs are valid, False otherwise.
+
+    PARAMETERS:
+        pairs : tuple(str)
+            Tuple of upper case character pairs
+
+    RETURNS: bool
+    """
+    for leading_numeral, second_numeral in pairs:
+        # Only one I, X and C can be used as the leading numeral in a subtractive pair
+        # I can only be placed before V and X
+        # X can only be placed before L and C
+        # C can only be placed before D and M
+
+        if leading_numeral == "I" and second_numeral not in ("V", "X"):
+            return False
+        elif leading_numeral == "X" and second_numeral not in ("L", "C"):
+            return False
+        elif leading_numeral == "C" and second_numeral not in ("D", "M"):
+            return False
+
     return True
 
 
@@ -130,26 +180,30 @@ def roman_to_arabic(roman_numeral):
     if not isinstance(roman_numeral, str):
         raise TypeError("Parameter 'roman_numeral' must be of type str")
 
+    roman_numeral = roman_numeral.upper()  # Ignore case
+
     # VERIFY VALIDITY
     
-    # is alpha string
-    # only characters allowed: IVXLCDM (lower or upper case)
+    # Is alpha string
+    # Only characters allowed: IVXLCDM (lower or upper case)
     # V, L and D can only appear at most once
     # I, X, C and M cannot occur more than 3 times in a row
     if (is_possible_roman_numeral(roman_numeral) and
             at_most_once_vld(roman_numeral) and
             at_most_3_in_row_ixcm(roman_numeral)):
 
-        pass  # TODO (use string.upper)
-        # Rules:
-        # - Numerals arranged in descending order (except for subtractive combinations)
         # Subtractive combinations Rules:
-        # - Only one I, X and C can be used as the leading numeral in a subtractive pair
-        # - I can ony be placed before V and X
-        # - X can only be placed before L and C
-        # - C can only be placed before D and M
+        #   Only one I, X and C can be used as the leading numeral in a subtractive pair
+        #   I can ony be placed before V and X
+        #   X can only be placed before L and C
+        #   C can only be placed before D and M
+        subtractive_combination_pairs = find_subtractive_combinations(roman_numeral)
+        if subtractive_combination_validity(subtractive_combination_pairs):
+            pass
 
-        # CONVERSION TO ARABIC NUMERAL
+            # Numerals arranged in descending order (except for subtractive combinations) # TODO
+
+            # CONVERSION TO ARABIC NUMERAL  # TODO
 
     return -1
 
