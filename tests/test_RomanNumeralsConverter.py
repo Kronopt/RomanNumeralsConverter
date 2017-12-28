@@ -189,49 +189,49 @@ class TestFindSubtractiveCombinations(unittest.TestCase):
     find_subtractive_combinations
     """
     def test_iv(self):
-        self.assertEquals(find_subtractive_combinations("IV"), ("IV",))
+        self.assertEquals(find_subtractive_combinations("IV"), (("IV", 0), ))
 
     def test_ix(self):
-        self.assertEquals(find_subtractive_combinations("IX"), ("IX",))
+        self.assertEquals(find_subtractive_combinations("IX"), (("IX", 0), ))
 
     def test_xl(self):
-        self.assertEquals(find_subtractive_combinations("XL"), ("XL",))
+        self.assertEquals(find_subtractive_combinations("XL"), (("XL", 0), ))
 
     def test_xc(self):
-        self.assertEquals(find_subtractive_combinations("XC"), ("XC",))
+        self.assertEquals(find_subtractive_combinations("XC"), (("XC", 0), ))
 
     def test_cd(self):
-        self.assertEquals(find_subtractive_combinations("CD"), ("CD",))
+        self.assertEquals(find_subtractive_combinations("CD"), (("CD", 0), ))
 
     def test_cm(self):
-        self.assertEquals(find_subtractive_combinations("CM"), ("CM",))
+        self.assertEquals(find_subtractive_combinations("CM"), (("CM", 0), ))
 
     def test_xiv(self):
-        self.assertEquals(find_subtractive_combinations("XIV"), ("IV",))
+        self.assertEquals(find_subtractive_combinations("XIV"), (("IV", 1), ))
 
     def test_xix(self):
-        self.assertEquals(find_subtractive_combinations("XIX"), ("IX",))
+        self.assertEquals(find_subtractive_combinations("XIX"), (("IX", 1), ))
 
     def test_cxl(self):
-        self.assertEquals(find_subtractive_combinations("CXL"), ("XL",))
+        self.assertEquals(find_subtractive_combinations("CXL"), (("XL", 1), ))
 
     def test_cxc(self):
-        self.assertEquals(find_subtractive_combinations("CXC"), ("XC",))
+        self.assertEquals(find_subtractive_combinations("CXC"), (("XC", 1), ))
 
     def test_mcd(self):
-        self.assertEquals(find_subtractive_combinations("MCD"), ("CD",))
+        self.assertEquals(find_subtractive_combinations("MCD"), (("CD", 1), ))
 
     def test_mcm(self):
-        self.assertEquals(find_subtractive_combinations("MCM"), ("CM",))
+        self.assertEquals(find_subtractive_combinations("MCM"), (("CM", 1), ))
 
     def test_ccxciv(self):
-        self.assertEquals(find_subtractive_combinations("CCXCIV"), ("XC", "IV"))
+        self.assertEquals(find_subtractive_combinations("CCXCIV"), (("XC", 2), ("IV", 4), ))
 
     def test_xliv(self):
-        self.assertEquals(find_subtractive_combinations("XLIV"), ("XL", "IV"))
+        self.assertEquals(find_subtractive_combinations("XLIV"), (("XL", 0), ("IV", 2), ))
 
     def test_cmxliv(self):
-        self.assertEquals(find_subtractive_combinations("CMXLIV"), ("CM", "XL", "IV"))
+        self.assertEquals(find_subtractive_combinations("CMXLIV"), (("CM", 0), ("XL", 2), ("IV", 4), ))
 
     def test_i(self):
         self.assertEquals(find_subtractive_combinations("I"), ())
@@ -248,40 +248,40 @@ class TestSubtractiveCombinationValidity(unittest.TestCase):
     subtractive_combination_validity
     """
     def test_iv(self):
-        self.assertTrue(subtractive_combination_validity(("IV", )))
+        self.assertTrue(subtractive_combination_validity((("IV", 0), )))
 
     def test_ix(self):
-        self.assertTrue(subtractive_combination_validity(("IX", )))
+        self.assertTrue(subtractive_combination_validity((("IX", 0), )))
 
     def test_xl(self):
-        self.assertTrue(subtractive_combination_validity(("XL", )))
+        self.assertTrue(subtractive_combination_validity((("XL", 0), )))
 
     def test_xc(self):
-        self.assertTrue(subtractive_combination_validity(("XC", )))
+        self.assertTrue(subtractive_combination_validity((("XC", 0), )))
 
     def test_cd(self):
-        self.assertTrue(subtractive_combination_validity(("CD", )))
+        self.assertTrue(subtractive_combination_validity((("CD", 0), )))
 
     def test_cm(self):
-        self.assertTrue(subtractive_combination_validity(("CM", )))
+        self.assertTrue(subtractive_combination_validity((("CM", 0), )))
 
     def test_il(self):
-        self.assertFalse(subtractive_combination_validity(("IL", )))
+        self.assertFalse(subtractive_combination_validity((("IL", 0), )))
 
     def test_ic(self):
-        self.assertFalse(subtractive_combination_validity(("IC", )))
+        self.assertFalse(subtractive_combination_validity((("IC", 0), )))
 
     def test_id(self):
-        self.assertFalse(subtractive_combination_validity(("ID", )))
+        self.assertFalse(subtractive_combination_validity((("ID", 0), )))
 
     def test_im(self):
-        self.assertFalse(subtractive_combination_validity(("IM", )))
+        self.assertFalse(subtractive_combination_validity((("IM", 0), )))
 
     def test_xd(self):
-        self.assertFalse(subtractive_combination_validity(("XD", )))
+        self.assertFalse(subtractive_combination_validity((("XD", 0), )))
 
     def test_xm(self):
-        self.assertFalse(subtractive_combination_validity(("XM", )))
+        self.assertFalse(subtractive_combination_validity((("XM", 0), )))
 
 
 # class TestRomanToArabic(unittest.TestCase):

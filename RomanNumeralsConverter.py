@@ -118,19 +118,21 @@ def find_subtractive_combinations(string):
     PARAMETERS:
         string : str
 
-    RETURNS: tuple
-        Tuple containing all subtractive combination pairs found.
+    RETURNS: ( (str pair, int index), ... )
+        Tuple containing all subtractive combination pairs found and the respective index at which each pair starts
     """
     ivxlcdm = ["I", "V", "X", "L", "C", "D", "M"]
 
     subtractive_pairs = []
     previous_char = "M"  # Max char (first case always goes through)
 
+    count = 0
     for char in string:
         if char not in ivxlcdm[:ivxlcdm.index(previous_char) + 1]:  # char <= previous_char
-            subtractive_pairs.append(previous_char + char)
+            subtractive_pairs.append((previous_char + char, count-1))
 
         previous_char = char
+        count += 1
 
     return tuple(subtractive_pairs)
 
@@ -140,12 +142,12 @@ def subtractive_combination_validity(pairs):
     Checks the validity of subtractive pairs. True if all pairs are valid, False otherwise.
 
     PARAMETERS:
-        pairs : tuple(str)
-            Tuple of upper case character pairs
+        pairs : ( (str pair, int index), ... ) output of find_subtractive_combinations()
+            Tuple of upper case character pairs and index
 
     RETURNS: bool
     """
-    for leading_numeral, second_numeral in pairs:
+    for (leading_numeral, second_numeral), _ in pairs:  # Ignore index of pair in original string
         # Only one I, X and C can be used as the leading numeral in a subtractive pair
         # I can only be placed before V and X
         # X can only be placed before L and C
@@ -182,8 +184,6 @@ def roman_to_arabic(roman_numeral):
 
     roman_numeral = roman_numeral.upper()  # Ignore case
 
-    # VERIFY VALIDITY
-    
     # Is alpha string
     # Only characters allowed: IVXLCDM (lower or upper case)
     # V, L and D can only appear at most once
@@ -201,7 +201,7 @@ def roman_to_arabic(roman_numeral):
         if subtractive_combination_validity(subtractive_combination_pairs):
             pass
 
-            # Numerals arranged in descending order (except for subtractive combinations) # TODO
+            # Numerals arranged in descending order (except for subtractive combinations) # TODO - use index in subtractive_combination_pairs
 
             # CONVERSION TO ARABIC NUMERAL  # TODO
 
