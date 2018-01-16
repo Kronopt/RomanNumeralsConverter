@@ -119,7 +119,7 @@ def find_subtractive_combinations(string):
         string : str
 
     RETURNS: ( (str pair, int index), ... )
-        Tuple containing all subtractive combination pairs found and the respective index at which each pair starts
+        Tuple containing all ordered subtractive combination pairs found and the respective index at which they start
     """
     ivxlcdm = ["I", "V", "X", "L", "C", "D", "M"]
 
@@ -153,11 +153,13 @@ def subtractive_combination_validity(pairs):
         # X can only be placed before L and C
         # C can only be placed before D and M
 
-        if leading_numeral == "I" and second_numeral not in ("V", "X"):
-            return False
-        elif leading_numeral == "X" and second_numeral not in ("L", "C"):
-            return False
-        elif leading_numeral == "C" and second_numeral not in ("D", "M"):
+        if leading_numeral == "I" and second_numeral in ("V", "X"):
+            continue
+        elif leading_numeral == "X" and second_numeral in ("L", "C"):
+            continue
+        elif leading_numeral == "C" and second_numeral in ("D", "M"):
+            continue
+        else:
             return False
 
     return True
@@ -226,7 +228,7 @@ def arabic_to_roman(arabic_numeral):  # TODO
     #   only numeric characters
     #   no 0
     #   positive only
-    #   max value = 3999 (classic representation)
+    #   max value = 3899 (classic representation)
     # convert into Roman
 
     return ""
