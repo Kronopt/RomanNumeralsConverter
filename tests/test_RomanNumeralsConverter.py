@@ -284,76 +284,90 @@ class TestSubtractiveCombinationValidity(unittest.TestCase):
         self.assertFalse(subtractive_combination_validity((("XM", 0), )))
 
 
-# class TestRomanToArabic(unittest.TestCase):
-#     """
-#     roman_to_arabic(roman_numeral)
-#     """
-#     def test_not_string(self):
-#         self.assertRaises(TypeError, roman_to_arabic, 1)
-#
-#     def test_lower_case(self):
-#         self.assertEquals(roman_to_arabic("i"), 1)
-#
-#     def test_lower_case_2(self):
-#         self.assertEquals(roman_to_arabic("xxiv"), 24)
-#
-#     def test_mixed_case(self):
-#         self.assertEquals(roman_to_arabic("mMmccCXXXviii", 3338))
-#
-#     def test_i(self):
-#         self.assertEquals(roman_to_arabic("I"), 1)
-#
-#     def test_v(self):
-#         self.assertEquals(roman_to_arabic("V"), 5)
-#
-#     def test_x(self):
-#         self.assertEquals(roman_to_arabic("X"), 10)
-#
-#     def test_l(self):
-#         self.assertEquals(roman_to_arabic("L"), 50)
-#
-#     def test_c(self):
-#         self.assertEquals(roman_to_arabic("C"), 100)
-#
-#     def test_d(self):
-#         self.assertEquals(roman_to_arabic("D"), 500)
-#
-#     def test_m(self):
-#         self.assertEquals(roman_to_arabic("M"), 1000)
-#
-#     def test_iv(self):
-#         self.assertEquals(roman_to_arabic("IV"), 4)
-#
-#     def test_ix(self):
-#         self.assertEquals(roman_to_arabic("IX"), 9)
-#
-#     def test_xl(self):
-#         self.assertEquals(roman_to_arabic("XL"), 40)
-#
-#     def test_xc(self):
-#         self.assertEquals(roman_to_arabic("XC"), 90)
-#
-#     def test_cd(self):
-#         self.assertEquals(roman_to_arabic("CD"), 400)
-#
-#     def test_cm(self):
-#         self.assertEquals(roman_to_arabic("CM"), 900)
-#
-#     def test_max_roman_numeral(self):
-#         self.assertEquals(roman_to_arabic("MMMDCCCXCIX"), 3899)
-#
-#     def test_longest_roman_numeral(self):
-#         self.assertEquals(roman_to_arabic("MMDCCCLXXXVIII"), 2888)
-#
-#     def test_wrong_numeral_xivi(self):
-#         self.assertEquals(roman_to_arabic("XIVI"), -1)
-#
-#     def test_wrong_numeral_clxvc(self):
-#         self.assertEquals(roman_to_arabic("CLXVC"), -1)
-#
-#     # TODO more wrong cases
-#
-#
+class TestRomanToArabic(unittest.TestCase):
+    """
+    roman_to_arabic(roman_numeral)
+    """
+    def test_not_string(self):
+        self.assertRaises(TypeError, roman_to_arabic, 1)
+
+    def test_lower_case(self):
+        self.assertEquals(roman_to_arabic("i"), 1)
+
+    def test_lower_case_2(self):
+        self.assertEquals(roman_to_arabic("xxiv"), 24)
+
+    def test_mixed_case(self):
+        self.assertEquals(roman_to_arabic("mMmccCXXXviii"), 3338)
+
+    def test_i(self):
+        self.assertEquals(roman_to_arabic("I"), 1)
+
+    def test_v(self):
+        self.assertEquals(roman_to_arabic("V"), 5)
+
+    def test_x(self):
+        self.assertEquals(roman_to_arabic("X"), 10)
+
+    def test_l(self):
+        self.assertEquals(roman_to_arabic("L"), 50)
+
+    def test_c(self):
+        self.assertEquals(roman_to_arabic("C"), 100)
+
+    def test_d(self):
+        self.assertEquals(roman_to_arabic("D"), 500)
+
+    def test_m(self):
+        self.assertEquals(roman_to_arabic("M"), 1000)
+
+    def test_iv(self):
+        self.assertEquals(roman_to_arabic("IV"), 4)
+
+    def test_ix(self):
+        self.assertEquals(roman_to_arabic("IX"), 9)
+
+    def test_xl(self):
+        self.assertEquals(roman_to_arabic("XL"), 40)
+
+    def test_xc(self):
+        self.assertEquals(roman_to_arabic("XC"), 90)
+
+    def test_cd(self):
+        self.assertEquals(roman_to_arabic("CD"), 400)
+
+    def test_cm(self):
+        self.assertEquals(roman_to_arabic("CM"), 900)
+
+    def test_max_roman_numeral(self):
+        self.assertEquals(roman_to_arabic("MMMDCCCXCIX"), 3899)
+
+    def test_longest_roman_numeral(self):
+        self.assertEquals(roman_to_arabic("MMDCCCLXXXVIII"), 2888)
+
+    def test_wrong_numeral_clxvc(self):
+        self.assertEquals(roman_to_arabic("CLXVC"), -1)
+
+    def test_wrong_numeral_ixx(self):
+        self.assertEquals(roman_to_arabic("IXX"), -1)
+
+    def test_wrong_numeral_civm(self):
+        self.assertEquals(roman_to_arabic("CIVM"), -1)
+
+    def test_wrong_numeral_mmmcdm(self):
+        self.assertEquals(roman_to_arabic("MMMCDM"), -1)
+
+    # TODO correct the following cases
+
+    # def test_wrong_numeral_ivi(self):
+    #     self.assertEquals(roman_to_arabic("IVI"), -1)
+    #
+    # def test_wrong_numeral_xcx(self):
+    #     self.assertEquals(roman_to_arabic("XCX"), -1)
+
+    # TODO more wrong cases
+
+
 # class TestArabicToRoman(unittest.TestCase):
 #     """
 #     arabic_to_roman(arabic_numeral)

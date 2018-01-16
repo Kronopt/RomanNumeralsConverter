@@ -184,6 +184,9 @@ def roman_to_arabic(roman_numeral):
     if not isinstance(roman_numeral, str):
         raise TypeError("Parameter 'roman_numeral' must be of type str")
 
+    ivxlcdm = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    ivxlcdm_order = ["I", "V", "X", "L", "C", "D", "M"]
+
     roman_numeral = roman_numeral.upper()  # Ignore case
 
     # Is alpha string
@@ -201,11 +204,36 @@ def roman_to_arabic(roman_numeral):
         #   C can only be placed before D and M
         subtractive_combination_pairs = find_subtractive_combinations(roman_numeral)
         if subtractive_combination_validity(subtractive_combination_pairs):
-            pass
 
-            # Numerals arranged in descending order (except for subtractive combinations) # TODO - use index in subtractive_combination_pairs
+            subtractive_combinations_indexes = [i[1] for i in subtractive_combination_pairs]
+            last_roman_numeral = "M"  # Max char (first case always goes through)
+            jump_char = False  # Jump over the 2nd char of a subtractive combination pair
+            count = 0
 
-            # CONVERSION TO ARABIC NUMERAL  # TODO
+            arabic_numeral = 0
+            for char in roman_numeral:
+
+                # When a subtractive combination is found, do not check descending order for the 2nd value in the pair
+                if not jump_char:
+                    # If char is bigger than the last char, roman numeral is wrong
+                    if char not in ivxlcdm_order[:ivxlcdm_order.index(last_roman_numeral) + 1]:  # char <= previous_char
+                        return -1
+
+                    # Last char is only kept if this char was not part of a subtractive combination
+                    last_roman_numeral = char
+                else:
+                    jump_char = False
+
+                # If value is the 1st of a subtractive combination, subtract its value, sum it otherwise
+                if count in subtractive_combinations_indexes:
+                    arabic_numeral -= ivxlcdm[char]
+                    jump_char = True
+                else:
+                    arabic_numeral += ivxlcdm[char]
+
+                count += 1
+
+            return arabic_numeral
 
     return -1
 
