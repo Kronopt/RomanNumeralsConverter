@@ -288,9 +288,6 @@ class TestRomanToArabic(unittest.TestCase):
     """
     roman_to_arabic(roman_numeral)
     """
-    def test_not_string(self):
-        self.assertRaises(TypeError, roman_to_arabic, 1)
-
     def test_lower_case(self):
         self.assertEquals(roman_to_arabic("i"), 1)
 

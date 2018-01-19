@@ -51,7 +51,7 @@ def is_non_zero_arabic_numeral(string):
 
     RETURNS: bool
     """
-    # Is comprised only of digits and is not only zero(es)
+    # Is comprised only of digits (not a float) and is not only zero(es)
     return string.isdigit() and int(string) != 0 and int(string) <= 3899
 
 
@@ -180,14 +180,13 @@ def roman_to_arabic(roman_numeral):
     RETURNS: int
         Actual conversion to Arabic Numeral if possible, -1 otherwise.
     """
-    # Check if roman_numeral is a str
-    if not isinstance(roman_numeral, str):
-        raise TypeError("Parameter 'roman_numeral' must be of type str")
+    try:
+        roman_numeral = roman_numeral.upper()  # Ignore case (while also checking if roman_numeral is a string)
+    except AttributeError:
+        return -1
 
     ivxlcdm = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
     ivxlcdm_order = ["I", "V", "X", "L", "C", "D", "M"]
-
-    roman_numeral = roman_numeral.upper()  # Ignore case
 
     # Is alpha string
     # Only characters allowed: IVXLCDM (lower or upper case)
@@ -238,25 +237,29 @@ def roman_to_arabic(roman_numeral):
     return -1
 
 
-def arabic_to_roman(arabic_numeral):  # TODO
+def arabic_to_roman(arabic_numeral):
     """
     Converts an Arabic numeral to a Roman numeral.
 
     PARAMETERS:
-        arabic_numeral : int
+        arabic_numeral : int or str
+            The value to be converted into a Roman numeral
 
     RETURNS: str
         Actual conversion to Roman Numeral if possible, empty string otherwise.
     """
-    # Check if string is an int
-    if not isinstance(arabic_numeral, int):
-        raise TypeError("Parameter 'arabic_numeral' must be of type int")
+    arabic_numeral = str(arabic_numeral)
 
-    # verify validity of arabic_numeral
-    #   only numeric characters
-    #   no 0
-    #   positive only
-    #   max value = 3899 (classic representation)
-    # convert into Roman
+    ivxlcdm = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    ivxlcdm_order = ["I", "V", "X", "L", "C", "D", "M"]
 
-    return ""
+    # Only numeric characters
+    # No 0
+    # Positive only
+    # Max value = 3899 (classic representation)
+    if is_non_zero_arabic_numeral(arabic_numeral):
+        for char in arabic_numeral:
+            pass  # TODO
+
+    else:
+        return ""
