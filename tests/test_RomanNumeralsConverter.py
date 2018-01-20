@@ -8,11 +8,12 @@ Tests for RomanNumeralsConverter.py
 
 import unittest
 from RomanNumeralsConverter import (is_possible_roman_numeral,
-                                    is_non_zero_arabic_numeral,
                                     at_most_once_vld,
                                     at_most_3_in_row_ixcm,
                                     find_subtractive_combinations,
                                     subtractive_combination_validity,
+                                    is_non_zero_arabic_numeral,
+                                    has_no_trailing_zeroes,
                                     roman_to_arabic,
                                     arabic_to_roman)
 
@@ -53,35 +54,6 @@ class TestIsPossibleRomanNumeral(unittest.TestCase):
 
     def test_new_line(self):
         self.assertFalse(is_possible_roman_numeral("M\nC"))
-
-
-class TestIsNonZeroArabicNumeral(unittest.TestCase):
-    """
-    is_non_zero_arabic_numeral(string)
-    """
-    def test_empty_string(self):
-        self.assertFalse(is_non_zero_arabic_numeral(""))
-
-    def test_not_digit(self):
-        self.assertFalse(is_non_zero_arabic_numeral("a#/."))
-
-    def test_zero(self):
-        self.assertFalse(is_non_zero_arabic_numeral("0"))
-
-    def test_zeroes(self):
-        self.assertFalse(is_non_zero_arabic_numeral("000000000000000"))
-
-    def test_negative(self):
-        self.assertFalse(is_non_zero_arabic_numeral("-1"))
-
-    def test_positive(self):
-        self.assertTrue(is_non_zero_arabic_numeral("1"))
-
-    def test_over_max(self):
-        self.assertFalse(is_non_zero_arabic_numeral("3900"))
-
-    def test_middle(self):
-        self.assertTrue(is_non_zero_arabic_numeral("2000"))
 
 
 class TestAtMostOnceVLD(unittest.TestCase):
@@ -282,6 +254,51 @@ class TestSubtractiveCombinationValidity(unittest.TestCase):
 
     def test_xm(self):
         self.assertFalse(subtractive_combination_validity((("XM", 0), )))
+
+
+class TestIsNonZeroArabicNumeral(unittest.TestCase):
+    """
+    is_non_zero_arabic_numeral(string)
+    """
+    def test_empty_string(self):
+        self.assertFalse(is_non_zero_arabic_numeral(""))
+
+    def test_not_digit(self):
+        self.assertFalse(is_non_zero_arabic_numeral("a#/."))
+
+    def test_zero(self):
+        self.assertFalse(is_non_zero_arabic_numeral("0"))
+
+    def test_zeroes(self):
+        self.assertFalse(is_non_zero_arabic_numeral("000000000000000"))
+
+    def test_negative(self):
+        self.assertFalse(is_non_zero_arabic_numeral("-1"))
+
+    def test_positive(self):
+        self.assertTrue(is_non_zero_arabic_numeral("1"))
+
+    def test_over_max(self):
+        self.assertFalse(is_non_zero_arabic_numeral("3900"))
+
+    def test_middle(self):
+        self.assertTrue(is_non_zero_arabic_numeral("2000"))
+
+
+class TestIsHasNoTrailingZeroes(unittest.TestCase):
+    """
+    has_no_trailing_zeroes(string)
+    """
+    def test_no_trailing_zeroes(self):
+        self.assertTrue(has_no_trailing_zeroes("3000"))
+
+    def test_trailing_zeroes(self):
+        self.assertFalse(has_no_trailing_zeroes("0003"))
+
+
+######################
+# Main Functions Tests
+######################
 
 
 class TestRomanToArabic(unittest.TestCase):

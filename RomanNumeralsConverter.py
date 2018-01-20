@@ -17,7 +17,7 @@ import re
 __author__ = 'Pedro HC David, https://github.com/Kronopt'
 __credits__ = ['Pedro HC David']
 __version__ = '0.1.dev'
-__date__ = '22:31h, 17/12/2017'
+__date__ = '03:24h, 20/01/2018'
 __status__ = 'Production'
 
 
@@ -40,19 +40,6 @@ def is_possible_roman_numeral(string):
             return len(match.group()) == len(string)
     
     return False
-
-
-def is_non_zero_arabic_numeral(string):
-    """
-    True if string is a non zero natural Arabic Numeral less than or equal to 3899 (max Roman Numeral), False otherwise.
-
-    PARAMETERS:
-        string : str
-
-    RETURNS: bool
-    """
-    # Is comprised only of digits (not a float) and is not only zero(es)
-    return string.isdigit() and int(string) != 0 and int(string) <= 3899
 
 
 def at_most_once_vld(string):
@@ -163,6 +150,31 @@ def subtractive_combination_validity(pairs):
             return False
 
     return True
+
+
+def is_non_zero_arabic_numeral(string):
+    """
+    True if string is a non zero natural Arabic Numeral less than or equal to 3899 (max Roman Numeral), False otherwise.
+
+    PARAMETERS:
+        string : str
+
+    RETURNS: bool
+    """
+    # Is comprised only of digits (not a float) and is not only zero(es)
+    return string.isdigit() and int(string) != 0 and int(string) <= 3899
+
+
+def has_no_trailing_zeroes(string):
+    """
+    True if string has no trailing zeroes, False otherwise.
+
+    PARAMETERS:
+        string : str
+
+    RETURNS: bool
+    """
+    return len(str(int(string))) == len(string)
 
 
 ################
