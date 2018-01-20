@@ -382,63 +382,117 @@ class TestRomanToArabic(unittest.TestCase):
     # TODO more wrong cases
 
 
-# class TestArabicToRoman(unittest.TestCase):
-#     """
-#     arabic_to_roman(arabic_numeral)
-#     """
-#     def test_not_integer(self):
-#         self.assertRaises(TypeError, arabic_to_roman, "1")
-#
-#     def test_1(self):
-#         self.assertEquals(arabic_to_roman(1), "I")
-#
-#     def test_5(self):
-#         self.assertEquals(arabic_to_roman(5), "V")
-#
-#     def test_10(self):
-#         self.assertEquals(arabic_to_roman(10), "X")
-#
-#     def test_50(self):
-#         self.assertEquals(arabic_to_roman(50), "L")
-#
-#     def test_100(self):
-#         self.assertEquals(arabic_to_roman(100), "C")
-#
-#     def test_500(self):
-#         self.assertEquals(arabic_to_roman(500), "D")
-#
-#     def test_1000(self):
-#         self.assertEquals(arabic_to_roman(1000), "M")
-#
-#     def test_4(self):
-#         self.assertEquals(arabic_to_roman(4), "IV")
-#
-#     def test_9(self):
-#         self.assertEquals(arabic_to_roman(9), "IX")
-#
-#     def test_40(self):
-#         self.assertEquals(arabic_to_roman(40), "XL")
-#
-#     def test_90(self):
-#         self.assertEquals(arabic_to_roman(90), "XC")
-#
-#     def test_400(self):
-#         self.assertEquals(arabic_to_roman(400), "CD")
-#
-#     def test_900(self):
-#         self.assertEquals(arabic_to_roman(900), "CM")
-#
-#     def test_max_roman_numeral(self):
-#         self.assertEquals(arabic_to_roman(3899), "MMMDCCCXCIX")
-#
-#     def test_longest_roman_numeral(self):
-#         self.assertEquals(arabic_to_roman(2888), "MMDCCCLXXXVIII")
-#
-#     def test_zero(self):
-#         self.assertEquals(arabic_to_roman(0), "")
-#
-#     def test_negative(self):
-#         self.assertEquals(arabic_to_roman(-1), "")
-#
-#     def test_above_max(self):
-#         self.assertEquals(arabic_to_roman(3900), "")
+class TestArabicToRoman(unittest.TestCase):
+    """
+    arabic_to_roman(arabic_numeral)
+    """
+    def test_1(self):
+        self.assertEquals(arabic_to_roman(1), "I")
+
+    def test_5(self):
+        self.assertEquals(arabic_to_roman(5), "V")
+
+    def test_10(self):
+        self.assertEquals(arabic_to_roman(10), "X")
+
+    def test_50(self):
+        self.assertEquals(arabic_to_roman(50), "L")
+
+    def test_100(self):
+        self.assertEquals(arabic_to_roman(100), "C")
+
+    def test_500(self):
+        self.assertEquals(arabic_to_roman(500), "D")
+
+    def test_1000(self):
+        self.assertEquals(arabic_to_roman(1000), "M")
+
+    def test_4(self):
+        self.assertEquals(arabic_to_roman(4), "IV")
+
+    def test_9(self):
+        self.assertEquals(arabic_to_roman(9), "IX")
+
+    def test_40(self):
+        self.assertEquals(arabic_to_roman(40), "XL")
+
+    def test_90(self):
+        self.assertEquals(arabic_to_roman(90), "XC")
+
+    def test_400(self):
+        self.assertEquals(arabic_to_roman(400), "CD")
+
+    def test_900(self):
+        self.assertEquals(arabic_to_roman(900), "CM")
+
+    def test_max_roman_numeral(self):
+        self.assertEquals(arabic_to_roman(3899), "MMMDCCCXCIX")
+
+    def test_longest_roman_numeral(self):
+        self.assertEquals(arabic_to_roman(2888), "MMDCCCLXXXVIII")
+
+    def test_zero(self):
+        self.assertEquals(arabic_to_roman(0), "")
+
+    def test_negative(self):
+        self.assertEquals(arabic_to_roman(-1), "")
+
+    def test_above_max(self):
+        self.assertEquals(arabic_to_roman(3900), "")
+
+    def test_s1(self):
+        self.assertEquals(arabic_to_roman("1"), "I")
+
+    def test_s5(self):
+        self.assertEquals(arabic_to_roman("5"), "V")
+
+    def test_s10(self):
+        self.assertEquals(arabic_to_roman("10"), "X")
+
+    def test_s50(self):
+        self.assertEquals(arabic_to_roman("50"), "L")
+
+    def test_s100(self):
+        self.assertEquals(arabic_to_roman("100"), "C")
+
+    def test_s500(self):
+        self.assertEquals(arabic_to_roman("500"), "D")
+
+    def test_s1000(self):
+        self.assertEquals(arabic_to_roman("1000"), "M")
+
+    def test_s4(self):
+        self.assertEquals(arabic_to_roman("4"), "IV")
+
+    def test_s9(self):
+        self.assertEquals(arabic_to_roman("9"), "IX")
+
+    def test_s40(self):
+        self.assertEquals(arabic_to_roman("40"), "XL")
+
+    def test_s90(self):
+        self.assertEquals(arabic_to_roman("90"), "XC")
+
+    def test_s400(self):
+        self.assertEquals(arabic_to_roman("400"), "CD")
+
+    def test_s900(self):
+        self.assertEquals(arabic_to_roman("900"), "CM")
+
+    def test_s_max_roman_numeral(self):
+        self.assertEquals(arabic_to_roman("3899"), "MMMDCCCXCIX")
+
+    def test_s_longest_roman_numeral(self):
+        self.assertEquals(arabic_to_roman("2888"), "MMDCCCLXXXVIII")
+
+    def test_s_zero(self):
+        self.assertEquals(arabic_to_roman("000000"), "")
+
+    def test_s_negative(self):
+        self.assertEquals(arabic_to_roman("-1"), "")
+
+    def test_s_above_max(self):
+        self.assertEquals(arabic_to_roman("3900"), "")
+
+    def test_trailing_zeroes(self):
+        self.assertEquals(arabic_to_roman("00012"), "")

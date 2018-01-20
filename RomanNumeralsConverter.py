@@ -262,16 +262,29 @@ def arabic_to_roman(arabic_numeral):
     """
     arabic_numeral = str(arabic_numeral)
 
-    ivxlcdm = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
-    ivxlcdm_order = ["I", "V", "X", "L", "C", "D", "M"]
+    roman_values = (("M", 1000), ("CM", 900), ("D", 500), ("CD", 400),
+                    ("C", 100), ("XC", 90), ("L", 50), ("XL", 40),
+                    ("X", 10), ("IX", 9), ("V", 5), ("IV", 4), ("I", 1))
 
     # Only numeric characters
+    # No trailing zeroes
     # No 0
     # Positive only
     # Max value = 3899 (classic representation)
-    if is_non_zero_arabic_numeral(arabic_numeral):
-        for char in arabic_numeral:
-            pass  # TODO
+    if is_non_zero_arabic_numeral(arabic_numeral) and has_no_trailing_zeroes(arabic_numeral):
 
-    else:
-        return ""
+        roman_numeral = ""
+        current_value = int(arabic_numeral)
+        while current_value != 0:
+
+            # Find highest value in roman_values that is less than or equal to current_value
+            # Add that roman character to the final string and subtract its value from the current value
+            for roman, value in roman_values:
+                if value <= current_value:
+                    roman_numeral += roman
+                    current_value -= value
+                    break
+
+        return roman_numeral
+
+    return ""
