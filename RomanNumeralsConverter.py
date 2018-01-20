@@ -288,3 +288,8 @@ def arabic_to_roman(arabic_numeral):
         return roman_numeral
 
     return ""
+
+
+if __name__ == "__main__":
+    # TODO argparse
+    pass
