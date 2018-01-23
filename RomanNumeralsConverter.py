@@ -3,22 +3,29 @@
 
 """
 ROMAN NUMERALS CONVERTER
-Converts Roman Numerals into Arabic Numerals (and vice versa)
+Converts Roman numerals into Arabic numerals (and vice versa)
 
 DEPENDENCIES:
     - Python 2.7
 
 HOW TO RUN:
-    - TODO
+    Through the command line:
+
+    RomanNumeralsConverter.py type numeral
+
+    - 'type' is either 'roman' or 'arabic', to explicitly define the type of numeral to convert
+    - 'numeral' is either a Roman numeral or an Arabic numeral (both between 1 and 3899)
+    - '-h, --help' shows the help text
+
+    A malformed numeral will yield either "", for Roman numerals, or -1, for Arabic numerals
 """
 
+import argparse
 import re
 
 __author__ = 'Pedro HC David, https://github.com/Kronopt'
 __credits__ = ['Pedro HC David']
-__version__ = '0.1.dev'
-__date__ = '03:24h, 20/01/2018'
-__status__ = 'Production'
+__version__ = '1.0'
 
 
 def is_possible_roman_numeral(string):
@@ -291,5 +298,15 @@ def arabic_to_roman(arabic_numeral):
 
 
 if __name__ == "__main__":
-    # TODO argparse
-    pass
+    parser = argparse.ArgumentParser(description='Converts Roman Numerals into Arabic Numerals (and vice versa)')
+
+    parser.add_argument('type', choices=['roman', 'arabic'], help='\'roman\' to convert a Roman numeral, '
+                                                                  '\'arabic\' to convert an Arabic numeral')
+    parser.add_argument('numeral', help='Roman/Arabic numeral to be converted')
+
+    parser = parser.parse_args()
+
+    if parser.type == 'roman':
+        print "Arabic Numeral: " + str(roman_to_arabic(parser.numeral))
+    else:
+        print "Roman Numeral: " + arabic_to_roman(parser.numeral)
